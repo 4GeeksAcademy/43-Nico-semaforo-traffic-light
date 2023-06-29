@@ -1,26 +1,43 @@
-import React from "react";
+import React, { useState } from 'react';
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+const Semacluz = () => {
+  const [selectedluz, setSelectedluz] = useState(null);
 
-//create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+  const boton = () => {
+    if(selectedluz === 'red'){
+      setSelectedluz('yellow')
+    } else if(selectedluz === 'yellow'){
+      setSelectedluz('green')
+    } else if(selectedluz === 'green'){
+      setSelectedluz('red')
+    } else if(selectedluz === null){
+      setSelectedluz('red')
+    } 
+  }
+  const darclick = (luz) => {
+    setSelectedluz(luz);
+  };
+
+  return (
+    <div className="semaforo bg-black">
+      <div
+        className={`luz red ${selectedluz === 'red' ? 'selected box-shadow' : ''}`}
+        onClick={() => darclick('red')}
+      ></div>
+      <div
+        className={`luz yellow ${selectedluz === 'yellow' ? 'selected box-shadow' : ''}`}
+        onClick={() => darclick('yellow')}
+      ></div>
+      <div
+        className={`luz green ${selectedluz === 'green' ? 'selected box-shadow' : ''}`}
+        onClick={() => darclick('green')}
+      ></div>
+      <div className='btn btn-primary' onClick={boton}>Cambiar color</div>
+    </div>
+  );
 };
 
-export default Home;
+export default Semacluz;
+
+
+
